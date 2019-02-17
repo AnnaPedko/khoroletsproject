@@ -7,14 +7,13 @@ import java.math.BigDecimal;
 
 public class ProductDaoImpl implements ProductDao {
 
-    public boolean saveProduct( Product product)
-    {
-        return true;
+    @Override
+    public boolean saveProduct(Product product) {
+        return false;
     }
 
     @Override
-    public void editProduct(long id, String neName, BigDecimal newPrice)
-    {
+    public void editProduct(long id, String neName, BigDecimal newPrice) {
         System.out.println("Product modified with id " + id);
     }
 
@@ -25,6 +24,6 @@ public class ProductDaoImpl implements ProductDao {
 
     @Override
     public void deleteProduct(long id) {
-        System.out.println("Delete product with id "+ id);
+        System.out.println("Delete product with id " + id);
     }
 }

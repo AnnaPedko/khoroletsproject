@@ -1,15 +1,22 @@
 package com.khorolets.services.impl;
 
 import com.khorolets.dao.ProductDao;
-import com.khorolets.dao.impl.ProductDaoImpl;
 import com.khorolets.domain.Product;
 import com.khorolets.services.ProductService;
+import com.khorolets.validators.ValidationService;
 
 import java.math.BigDecimal;
 
 public class ProductServiceImpl implements ProductService {
 
-    private ProductDao productDao = new ProductDaoImpl();
+    private ProductDao productDao;
+    private ValidationService validationService;
+
+
+    public ProductServiceImpl(ProductDao productDao, ValidationService validationService) {
+        this.productDao = productDao;
+        this.validationService = validationService;
+    }
 
     @Override
     public void createProduct(String name, BigDecimal price) {

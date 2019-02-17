@@ -5,10 +5,8 @@ public interface OrderService {
     /**
      * Order product
      *
-     * @param clientId
-     *        id of client who orders product;
-     * @param productId
-     *        product id;
+     * @param clientId  id of client who orders product;
+     * @param productId product id;
      **/
     void orderProduct(long clientId, long productId);
 
@@ -20,16 +18,14 @@ public interface OrderService {
     /**
      * Show list of orders for certain client id
      *
-     * @param clientId
-     *        client id;
+     * @param clientId client id;
      **/
     void showOrdersByClientId(long clientId);
 
     /**
      * Delete all orders for certain client id
      *
-     * @param clientId
-     *        client id;
+     * @param clientId client id;
      **/
     void deleteOrdersByClientId(long clientId);
 }

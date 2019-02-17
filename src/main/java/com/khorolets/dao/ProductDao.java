@@ -9,8 +9,7 @@ public interface ProductDao {
     /**
      * Save product
      *
-     * @param product
-     *        product object that should be saved;
+     * @param product product object that should be saved;
      * @return true if product have been saved;
      **/
     boolean saveProduct(Product product);
@@ -18,12 +17,9 @@ public interface ProductDao {
     /**
      * Modify product by id
      *
-     * @param id
-     *         product id;
-     * @param newName
-     *        new product name;
-     * @param newPrice
-     *         new price;
+     * @param id       product id;
+     * @param newName  new product name;
+     * @param newPrice new price;
      **/
     void editProduct(long id, String newName, BigDecimal newPrice);
 
@@ -35,8 +31,7 @@ public interface ProductDao {
     /**
      * Delete product by id
      *
-     * @param id
-     *         product id;
+     * @param id product id;
      **/
     void deleteProduct(long id);
 
