@@ -6,7 +6,6 @@ import com.khorolets.dao.ProductDao;
 import com.khorolets.dao.impl.ClientDaoImpl;
 import com.khorolets.dao.impl.OrderDaoImpl;
 import com.khorolets.dao.impl.ProductDaoImpl;
-import com.khorolets.domain.Client;
 import com.khorolets.services.ClientService;
 import com.khorolets.services.OrderService;
 import com.khorolets.services.ProductService;
@@ -33,13 +32,13 @@ public class App {
         ProductDao productDao = new ProductDaoImpl();
         OrderDao orderDao = new OrderDaoImpl();
 
-        ClientService clientService = new ClientServiceImpl(clientDao, validationService);// add the same for Product and Order
+        ClientService clientService = new ClientServiceImpl(clientDao, validationService);
         ProductService productService = new ProductServiceImpl(productDao, validationService);
         OrderService orderService = new OrderServiceImpl(orderDao, validationService);
 
         AdminMenu adminMenu = new AdminMenu(br, clientService, productService, orderService);
-        ClientMenu clientMenu = new ClientMenu(br,clientService,productService, orderService);
-        MainMenu menu = new MainMenu(br, adminMenu,clientMenu);
+        ClientMenu clientMenu = new ClientMenu(br, clientService, productService, orderService);
+        MainMenu menu = new MainMenu(br, adminMenu, clientMenu);
 
         menu.showMenu();
     }

@@ -8,16 +8,16 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.math.BigDecimal;
 
-public class AdminMenu {
+public class AdminMenu extends ClientManager {
 
     private final BufferedReader br;
-    private final ClientService clientService;
     private final ProductService productService;
     private final OrderService orderService;
 
     public AdminMenu(BufferedReader br, ClientService clientService, ProductService productService, OrderService orderService) {
+        super(clientService, br);
+
         this.br = br;
-        this.clientService = clientService;
         this.productService = productService;
         this.orderService = orderService;
     }
@@ -55,7 +55,7 @@ public class AdminMenu {
                 case "9":
                     showOrders();
                     break;
-                case "10":
+                case "R":
                     isRunning = false;
                     break;
                 case "0":
@@ -77,25 +77,12 @@ public class AdminMenu {
         System.out.println("7. Edit product");
         System.out.println("8. Delete product");
         System.out.println("9. List of orders");
-        System.out.println("10. Return ");//exit from this menu
+        System.out.println("R. Return ");//exit from this menu
         System.out.println("0. Exit");
     }
 
-    private void createClient() throws IOException {
-        System.out.println("Input name: ");
-        String name = br.readLine();
-        System.out.println("Input surname: ");
-        String surname = br.readLine();
-        System.out.println("Input phone number: ");
-        String phoneNumber = br.readLine();
-        System.out.println("Input age");
-        Integer age = readInteger();
-        System.out.println("Input email");
-        String email = br.readLine();
-        clientService.createClient(name, surname, age, phoneNumber, email);
-    }
 
-    private void createProduct() {
+    public void createProduct() {
         boolean isValid = false;
         while (!isValid) {
             try {
@@ -110,24 +97,7 @@ public class AdminMenu {
         }
     }
 
-    private void editClient() {
-        boolean isValid = false;
-        while (!isValid) {
-            try {
-                System.out.println("Input Id ");
-                long id = Long.parseLong(br.readLine());
-                System.out.println("Input new name: ");
-                String modifyName = br.readLine();
-                System.out.println("Input new phone: ");
-                String modifyPhone = br.readLine();
-                clientService.editClient(id, modifyName, modifyPhone);
-                isValid = true;
-            } catch (NumberFormatException | IOException ex) {
-            }
-        }
-    }
-
-    private void editProduct() {
+    public void editProduct() {
         boolean isValid = false;
 
         while (!isValid) {
@@ -147,20 +117,6 @@ public class AdminMenu {
         }
     }
 
-    private void deleteClient() {
-        boolean isValid = false;
-
-        while (!isValid) {
-            try {
-                System.out.println("Input client id as a long type");
-                long id = Long.parseLong(br.readLine());
-                clientService.deleteClient(id);
-                isValid = true;
-            } catch (NumberFormatException | IOException ex) {
-            }
-        }
-    }
-
     private void deleteProduct() {
 
         boolean isValid = false;
@@ -175,21 +131,6 @@ public class AdminMenu {
             }
         }
     }
-
-    private int readInteger() {
-        try {
-            return Integer.parseInt(br.readLine());
-        } catch (IOException | NumberFormatException ex) {
-            System.out.println("Input number please!");
-            return readInteger();
-        }
-    }
-
-    private void showClients() {
-        clientService.getAllClients().forEach(System.out::println);
-
-    }
-
 
     private void showProducts() {
         productService.showProducts();

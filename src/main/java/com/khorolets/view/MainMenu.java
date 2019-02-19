@@ -16,6 +16,7 @@ public class MainMenu {
 
     public void showMenu() throws IOException {
         boolean isRunning = true;
+
         while (isRunning) {
             System.out.println("1. Admin");
             System.out.println("2. Client");
@@ -35,9 +36,7 @@ public class MainMenu {
                 default:
                     System.out.println("Wrong value");
                     break;
-
             }
-
         }
     }
 }

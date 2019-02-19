@@ -12,10 +12,12 @@ public interface ClientService {
      * @param name    client name;
      * @param surname client surname;
      * @param phone   client phone;
-     * @param
+     * @param age     client age;
+     * @param phone   client phone;
+     * @param email   client email;
      **/
 
-    void createClient(String name, String surname, Integer age, String phone, String email);
+    long createClient(String name, String surname, Integer age, String phone, String email);
 
     /**
      * Modify client by id
@@ -24,7 +26,7 @@ public interface ClientService {
      * @param newName  new client name;
      * @param newPhone new client phone;
      **/
-    void editClient(long id, String newName, String newPhone);
+    void editClient(long id, String newName, int age, String email);
 
     /**
      * Show list of all clients

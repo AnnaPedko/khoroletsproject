@@ -10,7 +10,6 @@ import java.util.List;
 
 public class ClientServiceImpl implements ClientService {
 
-
     private ClientDao clientDao;
     private ValidationService validationService;
 
@@ -19,33 +18,32 @@ public class ClientServiceImpl implements ClientService {
         this.validationService = validationService;
     }
 
-    @Override
-    public void createClient(String name, String surname, String phone) {
-        this.createClient(name, surname, 0, phone, null);
-    }
-
-    public void createClient(String name, String surname, Integer age, String phone, String email) {
+    public long createClient(String name, String surname, Integer age, String phone, String email) {
         try {
-            //validationService.validateAge(age);
+            validationService.validateAge(age);
             //validationService.validatePhone(phone);
-            validationService.validateEmail(email);
+            //validationService.validateEmail(email);
 
             Client client = new Client(name, surname, age, phone, email);
-            boolean result = clientDao.saveClient(client);
+            return clientDao.saveClient(client);
 
-            if (result) {
-                System.out.println("Client saved");
-            }
         } catch (BusinessException ex) {
             ex.printStackTrace();
         }
+
+        return -1;
     }
 
-
     @Override
-    public void editClient(long id, String newName, String newPhone) {
+    public void editClient(long id, String newName, int age, String email) {
+        try {
+            validationService.validateAge(age);
+            validationService.validateEmail(email);
+            clientDao.editClient(id, newName, age, email);
+        } catch (BusinessException ex) {
+            ex.printStackTrace();
+        }
 
-        clientDao.editClient(id, newName, newPhone);
     }
 
     @Override
@@ -62,8 +60,10 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public long verifyClient(Client client) {
         long id = -1;
-        if (clientDao.contain(client))
-            id = 50;//client.getId();
+
+        if (clientDao.phoneExists(client.getPhone()))
+            id = clientDao.getClientId(client.getPhone());
+
         return id;
     }
 
