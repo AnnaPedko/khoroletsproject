@@ -10,7 +10,7 @@ public interface ClientDao {
      * Save client
      *
      * @param client Client object that should be saved ;
-     * @return true if client have been saved ;
+     * @return ClientId if client was saved;
      **/
     long saveClient(Client client);
 
@@ -19,9 +19,10 @@ public interface ClientDao {
      *
      * @param id       client id;
      * @param newName  new client name ;
-     * @param newPhone new client phone ;
+     * @param newAge new client phone ;
+     * @param newEmail new client phone ;
      **/
-    void editClient(long id, String newName, int age, String email);
+    void editClient(long id, String newName, int newAge, String newEmail);
 
     /**
      * Show list of all clients
@@ -36,17 +37,20 @@ public interface ClientDao {
     void deleteClient(long id);
 
     /**
-     * Show if client exists in db
-     *
-     * @param client client object;
-     * @return true if exists
+     * Get list of clients;
      **/
-    boolean contain(Client client);
-
     List<Client> getAllClients();
 
+    /**
+     * Get client id by phone;
+     * @param phone client phone;
+     **/
     long getClientId(String phone);
 
+    /**
+     * Return true if phone exists;
+     * @param phone client phone;
+     **/
     boolean phoneExists(String phone);
 
 

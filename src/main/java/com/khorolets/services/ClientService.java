@@ -24,14 +24,10 @@ public interface ClientService {
      *
      * @param id       client id;
      * @param newName  new client name;
-     * @param newPhone new client phone;
+     * @param newAge   new client age;
+     * @param newEmail new client phone;
      **/
-    void editClient(long id, String newName, int age, String email);
-
-    /**
-     * Show list of all clients
-     **/
-    void showClients();
+    void editClient(long id, String newName, int newAge, String newEmail);
 
     /**
      * Delete client by id
@@ -47,6 +43,9 @@ public interface ClientService {
      **/
     long verifyClient(Client client);
 
+    /**
+     * Get all list of client;
+     **/
     List<Client> getAllClients();
 
 }

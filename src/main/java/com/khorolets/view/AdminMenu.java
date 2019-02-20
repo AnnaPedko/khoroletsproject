@@ -67,21 +67,6 @@ public class AdminMenu extends ClientManager {
         }
     }
 
-    private void showMenu() {
-        System.out.println("1. Add client");
-        System.out.println("2. Modify client");
-        System.out.println("3. Remove client");
-        System.out.println("4. List of client");
-        System.out.println("5. List of products");
-        System.out.println("6. Add product");
-        System.out.println("7. Edit product");
-        System.out.println("8. Delete product");
-        System.out.println("9. List of orders");
-        System.out.println("R. Return ");//exit from this menu
-        System.out.println("0. Exit");
-    }
-
-
     public void createProduct() {
         boolean isValid = false;
         while (!isValid) {
@@ -130,6 +115,19 @@ public class AdminMenu extends ClientManager {
             } catch (NumberFormatException | IOException ex) {
             }
         }
+    }
+    private void showMenu() {
+        System.out.println("1. Add client");
+        System.out.println("2. Modify client");
+        System.out.println("3. Remove client");
+        System.out.println("4. List of client");
+        System.out.println("5. List of products");
+        System.out.println("6. Add product");
+        System.out.println("7. Edit product");
+        System.out.println("8. Delete product");
+        System.out.println("9. List of orders");
+        System.out.println("R. Return ");//exit from this menu
+        System.out.println("0. Exit");
     }
 
     private void showProducts() {

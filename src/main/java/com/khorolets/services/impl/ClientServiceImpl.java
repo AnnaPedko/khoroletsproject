@@ -21,8 +21,8 @@ public class ClientServiceImpl implements ClientService {
     public long createClient(String name, String surname, Integer age, String phone, String email) {
         try {
             validationService.validateAge(age);
-            //validationService.validatePhone(phone);
-            //validationService.validateEmail(email);
+            validationService.validatePhone(phone);
+            validationService.validateEmail(email);
 
             Client client = new Client(name, surname, age, phone, email);
             return clientDao.saveClient(client);
@@ -43,13 +43,6 @@ public class ClientServiceImpl implements ClientService {
         } catch (BusinessException ex) {
             ex.printStackTrace();
         }
-
-    }
-
-    @Override
-    public void showClients() {
-        clientDao.showClients();
-
     }
 
     @Override

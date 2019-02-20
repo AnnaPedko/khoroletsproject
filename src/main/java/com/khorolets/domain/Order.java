@@ -12,7 +12,6 @@ public class Order {
         this.products = products;
     }
 
-
     public long getId() {
         return id;
     }
@@ -35,5 +34,14 @@ public class Order {
 
     public void setProducts(List<Product> products) {
         this.products = products;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "products=" + products +
+                ", id=" + id +
+                ", client=" + client +
+                '}';
     }
 }
