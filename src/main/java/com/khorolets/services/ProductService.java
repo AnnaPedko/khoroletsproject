@@ -1,6 +1,9 @@
 package com.khorolets.services;
 
+import com.khorolets.domain.Product;
+
 import java.math.BigDecimal;
+import java.util.List;
 
 public interface ProductService {
 
@@ -10,7 +13,7 @@ public interface ProductService {
      * @param name  product name;
      * @param price product price;
      **/
-    void createProduct(String name, BigDecimal price);
+    long createProduct(String name, BigDecimal price);
 
     /**
      * Modify product by id
@@ -24,7 +27,7 @@ public interface ProductService {
     /**
      * Show list of all products
      **/
-    void showProducts();
+    List<Product> getAllProducts();
 
     /**
      * Delete product by id
@@ -32,4 +35,7 @@ public interface ProductService {
      * @param id product id;
      **/
     void deleteProduct(long id);
+
+    public Product getProductById(long id);
+
 }

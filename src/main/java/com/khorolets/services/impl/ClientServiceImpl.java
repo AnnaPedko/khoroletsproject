@@ -64,4 +64,8 @@ public class ClientServiceImpl implements ClientService {
     public List<Client> getAllClients() {
         return clientDao.getAllClients();
     }
+
+    public Client getClientById(long clientId) {
+        return clientDao.getClientById(clientId);
+    }
 }

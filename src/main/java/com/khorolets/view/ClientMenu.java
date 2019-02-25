@@ -6,6 +6,7 @@ import com.khorolets.services.ProductService;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class ClientMenu extends ClientManager {
     protected static long clientId = -1;
@@ -99,31 +100,56 @@ public class ClientMenu extends ClientManager {
     }
 
     private void showProducts() {
-        productService.showProducts();
+        productService.getAllProducts().forEach(System.out::println);
     }
 
-    private void orderProduct() {
+    private void orderProduct() throws IOException {
         showProducts();
-        boolean isValid = false;
+        ArrayList<Long> clientProductIds = new ArrayList<>();
+        boolean isOrdered = false;
 
-        while (!isValid) {
-            try {
-                System.out.println("Please enter long type of product Id ");
-                long productId = Long.parseLong(br.readLine());
-                orderService.orderProduct(clientId, productId);
-                isValid = true;
+        while (!isOrdered) {
+            System.out.println("Please enter long type of product Id and  \"S\" to save order");
+            String order = br.readLine();
+            switch (order) {
+                case "S":
+                    saveOrder(clientProductIds);
+                    isOrdered = true;
+                    break;
 
-            } catch (IOException ex) {
-
+                default: {
+                    long productId = Long.parseLong(order);
+                    clientProductIds.add(productId);
+                }
             }
         }
     }
 
+    private void saveOrder(ArrayList<Long> clientProductIds) {
+        if (!clientProductIds.isEmpty()) {
+            orderService.orderProduct(clientId, clientProductIds);
+        } else {
+            System.out.println("List of products is empty");
+        }
+    }
+
     private void showOrders() {
-        orderService.showOrdersByClientId(clientId);
+        orderService.getOrdersByClientId(clientId).forEach(System.out::println);
     }
 
     private void deleteOrders() {
-        orderService.deleteOrdersByClientId(clientId);
+        showOrders();
+        boolean isValid = false;
+
+        while (!isValid) {
+            try {
+                System.out.println("Input id as a long type");
+                long id = Long.parseLong(br.readLine());
+                orderService.deleteOrdersByClientId(clientId, id);
+                isValid = true;
+            } catch (NumberFormatException | IOException ex) {
+            }
+        }
     }
+
 }

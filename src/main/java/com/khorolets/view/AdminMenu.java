@@ -93,7 +93,6 @@ public class AdminMenu extends ClientManager {
                 String name = br.readLine();
                 System.out.println("Input new price: ");
                 BigDecimal price = new BigDecimal(br.readLine());
-
                 productService.editProduct(id, name, price);
                 isValid = true;
 
@@ -103,7 +102,7 @@ public class AdminMenu extends ClientManager {
     }
 
     private void deleteProduct() {
-
+        showProducts();
         boolean isValid = false;
 
         while (!isValid) {
@@ -116,6 +115,7 @@ public class AdminMenu extends ClientManager {
             }
         }
     }
+
     private void showMenu() {
         System.out.println("1. Add client");
         System.out.println("2. Modify client");
@@ -131,11 +131,12 @@ public class AdminMenu extends ClientManager {
     }
 
     private void showProducts() {
-        productService.showProducts();
+        productService.getAllProducts().forEach(System.out::println);
     }
 
     private void showOrders() {
-        orderService.showOrders();
+        orderService.getAllOrders().forEach(System.out::println);
+
     }
 
 }

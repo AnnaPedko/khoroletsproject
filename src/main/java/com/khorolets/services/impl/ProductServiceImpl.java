@@ -6,6 +6,7 @@ import com.khorolets.services.ProductService;
 import com.khorolets.validators.ValidationService;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public class ProductServiceImpl implements ProductService {
 
@@ -19,12 +20,9 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void createProduct(String name, BigDecimal price) {
+    public long createProduct(String name, BigDecimal price) {
         Product product = new Product(name, price);
-        boolean result = productDao.saveProduct(product);
-        if (result) {
-            System.out.println("Product created");
-        }
+        return productDao.saveProduct(product);
     }
 
     @Override
@@ -33,13 +31,17 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void showProducts() {
-        productDao.showProducts();
+    public List<Product> getAllProducts() {
+        return productDao.getAllProducts();
 
     }
 
     @Override
     public void deleteProduct(long id) {
         productDao.deleteProduct(id);
+    }
+
+    public Product getProductById(long id) {
+        return productDao.getProductById(id);
     }
 }

@@ -48,4 +48,6 @@ public interface ClientService {
      **/
     List<Client> getAllClients();
 
+    Client getClientById(long clientId);
+
 }

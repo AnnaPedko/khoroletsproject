@@ -1,5 +1,10 @@
 package com.khorolets.dao;
 
+import com.khorolets.domain.Order;
+
+import java.util.List;
+import java.util.Map;
+
 public interface OrderDao {
     /**
      * Order product
@@ -8,24 +13,24 @@ public interface OrderDao {
      * @param productId product id;
      * @return true if order have been done ;
      **/
-    boolean orderProduct(long clientId, long productId);
+    long orderProduct(Order order);
 
     /**
      * Show list of all orders
      **/
-    void showOrders();
+    List<Order> getAllOrders();
 
     /**
      * Show list of orders for certain client id
      *
      * @param clientId client id;
      **/
-    void showOrdersByClientId(long clientId);
+    Map<Long, Order> getOrdersByClientId(long clientId);
 
     /**
      * Delete all orders for certain client id
      *
      * @param clientId client id;
      **/
-    void deleteOrdersByClientId(long clientId);
+    void deleteOrdersByClientId(long clientId, long orderId);
 }

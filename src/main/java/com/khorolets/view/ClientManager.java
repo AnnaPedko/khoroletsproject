@@ -110,7 +110,7 @@ public class ClientManager {
         }
     }
 
-    private int readInteger() {
+    public int readInteger() {
         int res = -1;
 
         try {

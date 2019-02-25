@@ -34,7 +34,7 @@ public class App {
 
         ClientService clientService = new ClientServiceImpl(clientDao, validationService);
         ProductService productService = new ProductServiceImpl(productDao, validationService);
-        OrderService orderService = new OrderServiceImpl(orderDao, validationService);
+        OrderService orderService = new OrderServiceImpl(orderDao, validationService, productService, clientService);
 
         AdminMenu adminMenu = new AdminMenu(br, clientService, productService, orderService);
         ClientMenu clientMenu = new ClientMenu(br, clientService, productService, orderService);

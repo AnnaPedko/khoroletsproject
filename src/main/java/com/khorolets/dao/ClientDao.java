@@ -19,15 +19,10 @@ public interface ClientDao {
      *
      * @param id       client id;
      * @param newName  new client name ;
-     * @param newAge new client phone ;
+     * @param newAge   new client phone ;
      * @param newEmail new client phone ;
      **/
     void editClient(long id, String newName, int newAge, String newEmail);
-
-    /**
-     * Show list of all clients
-     **/
-    void showClients();
 
     /**
      * Delete client by id
@@ -43,15 +38,19 @@ public interface ClientDao {
 
     /**
      * Get client id by phone;
+     *
      * @param phone client phone;
      **/
     long getClientId(String phone);
 
     /**
      * Return true if phone exists;
+     *
      * @param phone client phone;
      **/
     boolean phoneExists(String phone);
+
+    Client getClientById(long clientId);
 
 
 }

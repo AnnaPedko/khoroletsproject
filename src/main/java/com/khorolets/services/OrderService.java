@@ -1,5 +1,10 @@
 package com.khorolets.services;
 
+import com.khorolets.domain.Order;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public interface OrderService {
 
     /**
@@ -8,24 +13,24 @@ public interface OrderService {
      * @param clientId  id of client who orders product;
      * @param productId product id;
      **/
-    void orderProduct(long clientId, long productId);
+    void orderProduct(long clientId, ArrayList<Long> productIds);
 
     /**
      * Show list of all orders
      **/
-    void showOrders();
+    List<Order> getAllOrders();
 
     /**
      * Show list of orders for certain client id
      *
      * @param clientId client id;
      **/
-    void showOrdersByClientId(long clientId);
+    List<Order> getOrdersByClientId(long clientId);
 
     /**
      * Delete all orders for certain client id
      *
      * @param clientId client id;
      **/
-    void deleteOrdersByClientId(long clientId);
+    void deleteOrdersByClientId(long clientId, long id);
 }

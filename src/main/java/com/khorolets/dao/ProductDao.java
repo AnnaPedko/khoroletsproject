@@ -3,6 +3,7 @@ package com.khorolets.dao;
 import com.khorolets.domain.Product;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public interface ProductDao {
 
@@ -12,7 +13,7 @@ public interface ProductDao {
      * @param product product object that should be saved;
      * @return true if product have been saved;
      **/
-    boolean saveProduct(Product product);
+    long saveProduct(Product product);
 
     /**
      * Modify product by id
@@ -26,7 +27,7 @@ public interface ProductDao {
     /**
      * Show list of all products
      **/
-    void showProducts();
+    List<Product> getAllProducts();
 
     /**
      * Delete product by id
@@ -34,5 +35,7 @@ public interface ProductDao {
      * @param id product id;
      **/
     void deleteProduct(long id);
+
+    Product getProductById(long id);
 
 }

@@ -54,19 +54,10 @@ public class ClientDaoImpl implements ClientDao {
     }
 
     @Override
-    public void showClients() {
-        System.out.println("Show clients");
-    }
-
-    @Override
     public void deleteClient(long id) {
         if (map.keySet().contains(id))
             map.remove(id);
         System.out.println("Delete client with id " + id);
-    }
-
-    public boolean contain(Client client) {
-        return phoneExists(client.getPhone());
     }
 
     @Override
@@ -96,6 +87,11 @@ public class ClientDaoImpl implements ClientDao {
         }
 
         return exist;
+    }
+
+    @Override
+    public Client getClientById(long clientId) {
+        return map.get(clientId);
     }
 
 }
