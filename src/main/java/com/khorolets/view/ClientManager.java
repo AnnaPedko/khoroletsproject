@@ -7,7 +7,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 
 public class ClientManager {
-
     private ClientService clientService;
     private BufferedReader br;
 
@@ -45,7 +44,9 @@ public class ClientManager {
     }
 
     public void editClient() {
+        showClients();
         boolean isValid = false;
+
         while (!isValid) {
             try {
 
@@ -89,11 +90,11 @@ public class ClientManager {
     }
 
     public long verifyClient() throws IOException {
-        System.out.println("Input phone number: ");
+        System.out.println("Input phone number in format: +380XXXXXXXXXX ");
         String phoneNumber = br.readLine();
         Client client = new Client("", "", phoneNumber);
 
-        return clientService.verifyClient(client);
+        return clientService.verifyClientByPhone(client);
     }
 
     public void deleteClient() {

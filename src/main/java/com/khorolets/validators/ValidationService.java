@@ -24,4 +24,11 @@ public interface ValidationService {
      * @param email client phone;
      **/
     void validateEmail(String email) throws BusinessException;
+
+    /**
+     * Validate string
+     *
+     * @param string string;
+     **/
+    void validateString(String string) throws BusinessException;
 }

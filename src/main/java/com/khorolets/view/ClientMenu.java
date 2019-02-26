@@ -104,12 +104,13 @@ public class ClientMenu extends ClientManager {
     }
 
     private void orderProduct() throws IOException {
+        long productId = -1;
         showProducts();
         ArrayList<Long> clientProductIds = new ArrayList<>();
         boolean isOrdered = false;
 
         while (!isOrdered) {
-            System.out.println("Please enter long type of product Id and  \"S\" to save order");
+            System.out.println("Please enter long type of product Id or  \"S\" to save order");
             String order = br.readLine();
             switch (order) {
                 case "S":
@@ -118,8 +119,12 @@ public class ClientMenu extends ClientManager {
                     break;
 
                 default: {
-                    long productId = Long.parseLong(order);
-                    clientProductIds.add(productId);
+                    try {
+                        productId = Long.parseLong(order);
+                        clientProductIds.add(productId);
+                    } catch (NumberFormatException ex) {
+                        System.out.println("Input value is incorrect");
+                    }
                 }
             }
         }
@@ -127,7 +132,7 @@ public class ClientMenu extends ClientManager {
 
     private void saveOrder(ArrayList<Long> clientProductIds) {
         if (!clientProductIds.isEmpty()) {
-            orderService.orderProduct(clientId, clientProductIds);
+            orderService.orderProducts(clientId, clientProductIds);
         } else {
             System.out.println("List of products is empty");
         }
@@ -151,5 +156,4 @@ public class ClientMenu extends ClientManager {
             }
         }
     }
-
 }

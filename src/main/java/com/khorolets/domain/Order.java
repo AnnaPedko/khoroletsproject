@@ -39,9 +39,9 @@ public class Order {
     @Override
     public String toString() {
         return "Order{" +
-                "id= " + id +
-                ", client=" + client +
-                "products=" + products +
+                "\nid= " + id + "," +
+                "\nclient=" + client + "," +
+                "\nproducts=" + products + "," +
                 '}';
     }
 }

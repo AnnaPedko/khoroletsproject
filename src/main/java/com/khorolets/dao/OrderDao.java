@@ -9,28 +9,31 @@ public interface OrderDao {
     /**
      * Order product
      *
-     * @param clientId  id of client who orders product;
-     * @param productId product id;
-     * @return true if order have been done ;
+     * @param order order object;
+     * @return order id;
      **/
-    long orderProduct(Order order);
+    long orderProducts(Order order);
 
     /**
-     * Show list of all orders
+     * Get list of all orders
+     *
+     * @return list of orders;
      **/
     List<Order> getAllOrders();
 
     /**
-     * Show list of orders for certain client id
+     * Get list of orders for certain client id
      *
      * @param clientId client id;
+     * @return collection with key = order id, value = order object;
      **/
     Map<Long, Order> getOrdersByClientId(long clientId);
 
     /**
-     * Delete all orders for certain client id
+     * Delete order for certain client id
      *
      * @param clientId client id;
+     * @param orderId  order id;
      **/
     void deleteOrdersByClientId(long clientId, long orderId);
 }

@@ -78,6 +78,7 @@ public class AdminMenu extends ClientManager {
                 productService.createProduct(name, price);
                 isValid = true;
             } catch (NumberFormatException | IOException ex) {
+                System.out.println("You input not valid price");
             }
         }
     }
@@ -136,7 +137,5 @@ public class AdminMenu extends ClientManager {
 
     private void showOrders() {
         orderService.getAllOrders().forEach(System.out::println);
-
     }
-
 }

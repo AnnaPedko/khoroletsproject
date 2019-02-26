@@ -25,7 +25,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void orderProduct(long clientId, ArrayList<Long> productIds) {
+    public void orderProducts(long clientId, ArrayList<Long> productIds) {
         List<Product> products = new ArrayList<>();
         for (Long id : productIds) {
             if (productService.getProductById(id) != null) {
@@ -33,10 +33,9 @@ public class OrderServiceImpl implements OrderService {
             }
         }
         if (products != null) {
-            orderDao.orderProduct(new Order(clientService.getClientById(clientId), products));
+            orderDao.orderProducts(new Order(clientService.getClientById(clientId), products));
         }
     }
-
 
     @Override
     public List<Order> getAllOrders() {
@@ -49,8 +48,6 @@ public class OrderServiceImpl implements OrderService {
 
 
     public void deleteOrdersByClientId(long clientId, long orderId) {
-
         orderDao.deleteOrdersByClientId(clientId, orderId);
-
     }
 }

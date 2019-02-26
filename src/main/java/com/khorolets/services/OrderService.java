@@ -10,13 +10,15 @@ public interface OrderService {
     /**
      * Order product
      *
-     * @param clientId  id of client who orders product;
-     * @param productId product id;
+     * @param clientId   id of client who orders product;
+     * @param productIds array of ordered products;
      **/
-    void orderProduct(long clientId, ArrayList<Long> productIds);
+    void orderProducts(long clientId, ArrayList<Long> productIds);
 
     /**
      * Show list of all orders
+     *
+     * @return list of orders;
      **/
     List<Order> getAllOrders();
 
@@ -24,6 +26,7 @@ public interface OrderService {
      * Show list of orders for certain client id
      *
      * @param clientId client id;
+     * @resturn list of orders;
      **/
     List<Order> getOrdersByClientId(long clientId);
 

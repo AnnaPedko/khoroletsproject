@@ -19,19 +19,23 @@ public class ClientServiceImpl implements ClientService {
     }
 
     public long createClient(String name, String surname, Integer age, String phone, String email) {
+        long clientId = -1;
         try {
             validationService.validateAge(age);
             validationService.validatePhone(phone);
             validationService.validateEmail(email);
+            validationService.validateString(name);
+            validationService.validateString(surname);
 
             Client client = new Client(name, surname, age, phone, email);
-            return clientDao.saveClient(client);
+            if (!clientDao.hasPhone(client.getPhone()))
+                clientId = clientDao.saveClient(client);
 
         } catch (BusinessException ex) {
             ex.printStackTrace();
         }
 
-        return -1;
+        return clientId;
     }
 
     @Override
@@ -39,6 +43,8 @@ public class ClientServiceImpl implements ClientService {
         try {
             validationService.validateAge(age);
             validationService.validateEmail(email);
+            validationService.validateString(newName);
+
             clientDao.editClient(id, newName, age, email);
         } catch (BusinessException ex) {
             ex.printStackTrace();
@@ -51,10 +57,10 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public long verifyClient(Client client) {
+    public long verifyClientByPhone(Client client) {
         long id = -1;
 
-        if (clientDao.phoneExists(client.getPhone()))
+        if (clientDao.hasPhone(client.getPhone()))
             id = clientDao.getClientId(client.getPhone());
 
         return id;

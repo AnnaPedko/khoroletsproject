@@ -9,13 +9,11 @@ import java.util.List;
 import java.util.Map;
 
 public class ClientDaoImpl implements ClientDao {
-
-    private static long generator = 0;
     private static volatile ClientDao clientDao;
+    private static long generator = 0;
     private Map<Long, Client> map = new HashMap<>();
 
-    private ClientDaoImpl() {
-    }
+    private ClientDaoImpl() {}
 
     public static ClientDao getInstance() {
         if (clientDao == null) {
@@ -30,34 +28,31 @@ public class ClientDaoImpl implements ClientDao {
 
     @Override
     public long saveClient(Client client) {
-        long clientId = -1;
+        client.setId(generator++);
+        map.put(client.getId(), client);
 
-        if (!phoneExists(client.getPhone())) {
-            client.setId(generator++);
-            map.put(client.getId(), client);
-            clientId = client.getId();
-        }
-
-        return clientId;
+        return client.getId();
     }
 
     @Override
     public void editClient(long id, String newName, int age, String email) {
+        if (map.keySet().contains(id)) {
+            map.get(id).setName(newName);
+            map.get(id).setAge(age);
+            map.get(id).setEmail(email);
 
-        for (long key : map.keySet()) {
-            if (id == key) {
-                map.get(id).setName(newName);
-                map.get(id).setAge(age);
-                map.get(id).setEmail(email);
-            }
-        }
+            System.out.println("Client with id = " + id + " is edited");
+        } else
+            System.out.println("Client with id = " + id + " does not exist");
     }
 
     @Override
     public void deleteClient(long id) {
-        if (map.keySet().contains(id))
-            map.remove(id);
-        System.out.println("Delete client with id " + id);
+        if (map.remove(id) != null) {
+            System.out.println("Delete client with id =  " + id);
+        } else {
+            System.out.println("There is no client with id = " + id);
+        }
     }
 
     @Override
@@ -76,13 +71,13 @@ public class ClientDaoImpl implements ClientDao {
         return id;
     }
 
-    public boolean phoneExists(String phone) {
+    public boolean hasPhone(String phone) {
         boolean exist = false;
 
         for (Map.Entry<Long, Client> entry : map.entrySet()) {
             if (phone.equals(entry.getValue().getPhone())) {
                 exist = true;
-                System.out.println("The client with this phone exists");
+                System.out.println("The client with phone " + phone + " exists");
             }
         }
 
@@ -93,5 +88,4 @@ public class ClientDaoImpl implements ClientDao {
     public Client getClientById(long clientId) {
         return map.get(clientId);
     }
-
 }

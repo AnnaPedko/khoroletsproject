@@ -12,6 +12,7 @@ public interface ProductService {
      *
      * @param name  product name;
      * @param price product price;
+     * @return id of created product;
      **/
     long createProduct(String name, BigDecimal price);
 
@@ -26,6 +27,8 @@ public interface ProductService {
 
     /**
      * Show list of all products
+     *
+     * @return list of products;
      **/
     List<Product> getAllProducts();
 
@@ -36,6 +39,11 @@ public interface ProductService {
      **/
     void deleteProduct(long id);
 
-    public Product getProductById(long id);
-
+    /**
+     * Get product by id
+     *
+     * @param id product id;
+     * @return product object
+     **/
+    Product getProductById(long id);
 }

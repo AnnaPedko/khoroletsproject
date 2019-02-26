@@ -24,13 +24,12 @@ import java.io.InputStreamReader;
 
 public class App {
     public static void main(String[] args) throws IOException {
-
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         ValidationService validationService = new ValidationServiceImpl();
 
         ClientDao clientDao = ClientDaoImpl.getInstance();
-        ProductDao productDao = new ProductDaoImpl();
-        OrderDao orderDao = new OrderDaoImpl();
+        ProductDao productDao = ProductDaoImpl.getInstance();
+        OrderDao orderDao = OrderDaoImpl.getInstance();
 
         ClientService clientService = new ClientServiceImpl(clientDao, validationService);
         ProductService productService = new ProductServiceImpl(productDao, validationService);

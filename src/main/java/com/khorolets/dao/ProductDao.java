@@ -11,7 +11,7 @@ public interface ProductDao {
      * Save product
      *
      * @param product product object that should be saved;
-     * @return true if product have been saved;
+     * @return id of saved product;
      **/
     long saveProduct(Product product);
 
@@ -25,7 +25,9 @@ public interface ProductDao {
     void editProduct(long id, String newName, BigDecimal newPrice);
 
     /**
-     * Show list of all products
+     * Get list of all products
+     *
+     * @return list of products;
      **/
     List<Product> getAllProducts();
 
@@ -36,6 +38,11 @@ public interface ProductDao {
      **/
     void deleteProduct(long id);
 
+    /**
+     * Get product by id
+     *
+     * @param id product id;
+     * @return product object;
+     **/
     Product getProductById(long id);
-
 }

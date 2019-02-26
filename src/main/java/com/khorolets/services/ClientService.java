@@ -15,8 +15,8 @@ public interface ClientService {
      * @param age     client age;
      * @param phone   client phone;
      * @param email   client email;
+     * @return id of created client;
      **/
-
     long createClient(String name, String surname, Integer age, String phone, String email);
 
     /**
@@ -40,14 +40,22 @@ public interface ClientService {
      * Verification of client
      *
      * @param client client object;
+     * @return client id;
      **/
-    long verifyClient(Client client);
+    long verifyClientByPhone(Client client);
 
     /**
      * Get all list of client;
+     *
+     * @return list of clients;
      **/
     List<Client> getAllClients();
 
+    /**
+     * Get client by id;
+     *
+     * @param clientId client id;
+     * @return client object;
+     **/
     Client getClientById(long clientId);
-
 }

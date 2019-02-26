@@ -13,16 +13,15 @@ public class ValidationServiceImpl implements ValidationService {
 
     @Override
     public void validatePhone(String phone) throws BusinessException {
-        if (phone.length() != 10 || !isNumber(phone) || !validateCode(phone.substring(0, 3)))
-            throw new BusinessException("Incorrect phone");
+        if (phone.length() != 13 || !isNumber(phone.substring(1, 13)) || !validateCode(phone.substring(0, 6)))
+            throw new BusinessException("Incorrect phone. Please enter phone in this format:+380XXXXXXXXXX");
     }
 
     @Override
     public void validateEmail(String email) throws BusinessException {
 
         if (email.length() > 254 || !isEmail(email))
-            throw new BusinessException("Incorrect email");
-
+            throw new BusinessException("Incorrect email. Please enter email in this format: simple@example.com ");
     }
 
     public boolean isNumber(String string) {
@@ -34,7 +33,11 @@ public class ValidationServiceImpl implements ValidationService {
     }
 
     public boolean validateCode(String code) {
-        return code.equals("050") || code.equals("097") || code.equals("067");
+        return code.equals("+38050") || code.equals("+38097") || code.equals("+38067");
     }
 
+    public void validateString(String string) throws BusinessException {
+        if (string.isEmpty())
+            throw new BusinessException("Input string is empty");
+    }
 }

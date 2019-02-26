@@ -10,11 +10,24 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class OrderDaoImpl implements OrderDao {
-
+    private static volatile OrderDao orderDao;
     private static long generator = 0;
     private Map<Long, Order> map = new HashMap<>();
 
-    public long orderProduct(Order order) {
+    private OrderDaoImpl() {}
+
+    public static OrderDao getInstance() {
+        if (orderDao == null) {
+            synchronized (ClientDaoImpl.class) {
+                if (orderDao == null)
+                    orderDao = new OrderDaoImpl();
+            }
+        }
+
+        return orderDao;
+    }
+
+    public long orderProducts(Order order) {
         order.setId(generator++);
         map.put(order.getId(), order);
 
@@ -25,7 +38,6 @@ public class OrderDaoImpl implements OrderDao {
     public List<Order> getAllOrders() {
         return new ArrayList<>(map.values());
     }
-
 
     public Map<Long, Order> getOrdersByClientId(long clientId) {
         Map<Long, Order> result = map.entrySet()
@@ -41,10 +53,9 @@ public class OrderDaoImpl implements OrderDao {
 
         if (getOrdersByClientId(clientId).remove(orderId) != null) {
             map.remove(orderId);
-            System.out.println("Delete client with id " + orderId);
+            System.out.println(" Delete order with id = " + orderId);
         } else {
-            System.out.println("There is no client with id " + orderId);
+            System.out.println(" There is no order with id = " + orderId);
         }
     }
-
 }

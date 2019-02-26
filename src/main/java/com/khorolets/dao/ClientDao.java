@@ -32,25 +32,33 @@ public interface ClientDao {
     void deleteClient(long id);
 
     /**
-     * Get list of clients;
+     * Get list of all clients
+     *
+     * @return list of clients;
      **/
     List<Client> getAllClients();
 
     /**
-     * Get client id by phone;
+     * Get client id by phone
      *
      * @param phone client phone;
+     * @return client id;
      **/
     long getClientId(String phone);
 
     /**
-     * Return true if phone exists;
+     * Return true if phone exists
      *
-     * @param phone client phone;
+     * @param  phone client phone;
+     * @return true if phone exists;
      **/
-    boolean phoneExists(String phone);
+    boolean hasPhone(String phone);
 
+    /**
+     * Get Client object by client id
+     *
+     * @param clientId client phone;
+     * @return Client object;
+     **/
     Client getClientById(long clientId);
-
-
 }

@@ -9,10 +9,8 @@ import java.math.BigDecimal;
 import java.util.List;
 
 public class ProductServiceImpl implements ProductService {
-
     private ProductDao productDao;
     private ValidationService validationService;
-
 
     public ProductServiceImpl(ProductDao productDao, ValidationService validationService) {
         this.productDao = productDao;
@@ -33,7 +31,6 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> getAllProducts() {
         return productDao.getAllProducts();
-
     }
 
     @Override
