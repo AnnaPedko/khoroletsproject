@@ -14,7 +14,8 @@ public class ProductDaoImpl implements ProductDao {
     private static long generator = 0;
     private Map<Long, Product> map = new HashMap<>();
 
-    private ProductDaoImpl() {}
+    private ProductDaoImpl() {
+    }
 
     public static ProductDao getInstance() {
         if (productDao == null) {

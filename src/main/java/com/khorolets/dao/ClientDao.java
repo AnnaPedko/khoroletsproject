@@ -49,7 +49,7 @@ public interface ClientDao {
     /**
      * Return true if phone exists
      *
-     * @param  phone client phone;
+     * @param phone client phone;
      * @return true if phone exists;
      **/
     boolean hasPhone(String phone);

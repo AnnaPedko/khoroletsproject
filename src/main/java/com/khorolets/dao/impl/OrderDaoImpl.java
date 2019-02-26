@@ -14,7 +14,8 @@ public class OrderDaoImpl implements OrderDao {
     private static long generator = 0;
     private Map<Long, Order> map = new HashMap<>();
 
-    private OrderDaoImpl() {}
+    private OrderDaoImpl() {
+    }
 
     public static OrderDao getInstance() {
         if (orderDao == null) {

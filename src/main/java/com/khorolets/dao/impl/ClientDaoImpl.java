@@ -13,7 +13,8 @@ public class ClientDaoImpl implements ClientDao {
     private static long generator = 0;
     private Map<Long, Client> map = new HashMap<>();
 
-    private ClientDaoImpl() {}
+    private ClientDaoImpl() {
+    }
 
     public static ClientDao getInstance() {
         if (clientDao == null) {
