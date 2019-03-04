@@ -30,6 +30,8 @@ public class ClientServiceImpl implements ClientService {
             Client client = new Client(name, surname, age, phone, email);
             if (!clientDao.hasPhone(client.getPhone()))
                 clientId = clientDao.saveClient(client);
+            else
+                System.out.println("The client with this phone exists. Client was not saved");
 
         } catch (BusinessException ex) {
             ex.printStackTrace();

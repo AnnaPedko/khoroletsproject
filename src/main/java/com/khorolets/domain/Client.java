@@ -20,6 +20,18 @@ public class Client {
         this.email = email;
     }
 
+    public Client(long id, String name, String surname, int age, String phone, String email) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.age = age;
+        this.phone = phone;
+        this.email = email;
+    }
+
+    public Client() {
+    }
+
     public long getId() {
         return id;
     }

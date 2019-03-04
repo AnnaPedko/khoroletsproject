@@ -7,6 +7,16 @@
     <groupId>home.anna</groupId>
     <artifactId>khorolets.project</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
+    <dependencies>
+    <dependency>
+        <groupId>com.h2database</groupId>
+        <artifactId>h2</artifactId>
+        <version>1.4.197</version>
+        <scope>test</scope>
+    </dependency>
+    </dependencies>
+
 
 
 </project>

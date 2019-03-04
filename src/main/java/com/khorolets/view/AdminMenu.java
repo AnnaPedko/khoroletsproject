@@ -85,7 +85,7 @@ public class AdminMenu extends ClientManager {
 
     public void editProduct() {
         boolean isValid = false;
-
+        showProducts();
         while (!isValid) {
             try {
                 System.out.println("Input Id as a long type");
