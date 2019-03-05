@@ -13,8 +13,9 @@ public class ProductDBDao implements ProductDao {
     private static final String USER = "Test";
     private static final String PASSWORD = "";
 
-    public ProductDBDao() {
+    private static volatile ProductDao productDao;
 
+    private ProductDBDao() {
         try (Connection connection = DriverManager.getConnection(DB_URL, USER, PASSWORD);
              Statement st = connection.createStatement()) {
 
@@ -23,6 +24,17 @@ public class ProductDBDao implements ProductDao {
         } catch (SQLException ex) {
             System.out.println("Something wrong");
         }
+    }
+
+    public static ProductDao getInstance() {
+        if (productDao == null) {
+            synchronized (ProductDaoImpl.class) {
+                if (productDao == null)
+                    productDao = new ProductDBDao();
+            }
+        }
+
+        return productDao;
     }
 
     @Override

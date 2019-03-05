@@ -39,15 +39,45 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<Order> getAllOrders() {
-        return orderDao.getAllOrders();
+        List<Order> orders;
+        orders = getOrders(orderDao.getAllOrders());
+
+        return orders;
     }
 
     public List<Order> getOrdersByClientId(long clientId) {
-        return new ArrayList<>(orderDao.getOrdersByClientId(clientId).values());
+        List<Order> orders;
+        orders = getOrders(orderDao.getOrdersByClientId(clientId));
+
+        return orders;
     }
 
 
     public void deleteOrdersByClientId(long clientId, long orderId) {
         orderDao.deleteOrdersByClientId(clientId, orderId);
+    }
+
+    public List<Order> getOrders(List<long[]> ordersTable) {
+        List<Order> orders = new ArrayList<>();
+        List<Product> products = new ArrayList<>();
+
+        long previousOrderId = -1;
+
+        for (int i = 0; i < ordersTable.size(); ++i) {
+            long orderId = ordersTable.get(i)[0];
+            long clientId = ordersTable.get(i)[1];
+            long productId = ordersTable.get(i)[2];
+
+            if (orderId == previousOrderId)
+                products.add(productService.getProductById(productId));
+            else {
+                products = new ArrayList<>();
+                products.add(productService.getProductById(productId));
+                previousOrderId = orderId;
+                orders.add(new Order(orderId, clientService.getClientById(clientId), products));
+            }
+
+        }
+        return orders;
     }
 }

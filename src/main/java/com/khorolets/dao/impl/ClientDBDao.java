@@ -8,13 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ClientDBDao implements ClientDao {
-
     public static final String DB_URL = "jdbc:h2:tcp://localhost/~/khorolets.project";
     private static final String USER = "Test";
     private static final String PASSWORD = "";
 
-    public ClientDBDao() {
+    private static volatile ClientDao clientDao;
 
+    private ClientDBDao() {
         try (Connection connection = DriverManager.getConnection(DB_URL, USER, PASSWORD);
              Statement st = connection.createStatement()) {
 
@@ -23,6 +23,17 @@ public class ClientDBDao implements ClientDao {
         } catch (SQLException ex) {
             System.out.println("Something wrong");
         }
+    }
+
+    public static ClientDao getInstance() {
+        if (clientDao == null) {
+            synchronized (ClientDaoImpl.class) {
+                if (clientDao == null)
+                    clientDao = new ClientDBDao();
+            }
+        }
+
+        return clientDao;
     }
 
     @Override
@@ -128,7 +139,8 @@ public class ClientDBDao implements ClientDao {
         try (Connection connection = DriverManager.getConnection(DB_URL, USER, PASSWORD);
              Statement st = connection.createStatement();
              ResultSet resultSet = st.executeQuery("SELECT * FROM CLIENT WHERE PHONE = '" + phone + "';")) {
-            exist = resultSet.next();
+
+             exist = resultSet.next();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -141,9 +153,9 @@ public class ClientDBDao implements ClientDao {
 
         try (Connection connection = DriverManager.getConnection(DB_URL, USER, PASSWORD);
              Statement st = connection.createStatement();
-             ResultSet resultSet = st.executeQuery("SELECT * FROM CLIENT WHERE ID = " + clientId)) {
+             ResultSet resultSet = st.executeQuery("SELECT * FROM CLIENT WHERE ID = " + clientId + ";")) {
 
-            while (resultSet.next()) {
+             while (resultSet.next()) {
                 long id = resultSet.getLong("ID");
                 String name = resultSet.getString("NAME");
                 String surname = resultSet.getString("SURNAME");

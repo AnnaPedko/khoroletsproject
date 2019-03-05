@@ -3,7 +3,6 @@ package com.khorolets.dao;
 import com.khorolets.domain.Order;
 
 import java.util.List;
-import java.util.Map;
 
 public interface OrderDao {
     /**
@@ -17,17 +16,17 @@ public interface OrderDao {
     /**
      * Get list of all orders
      *
-     * @return list of orders;
+     * @return list of arrays [orderId, clientId, productId];
      **/
-    List<Order> getAllOrders();
+    List<long[]> getAllOrders();
 
     /**
      * Get list of orders for certain client id
      *
      * @param clientId client id;
-     * @return collection with key = order id, value = order object;
+     * @return list of arrays [orderId, clientId, productId]
      **/
-    Map<Long, Order> getOrdersByClientId(long clientId);
+    List<long[]> getOrdersByClientId(long clientId);
 
     /**
      * Delete order for certain client id

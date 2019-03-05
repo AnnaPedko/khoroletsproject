@@ -133,6 +133,7 @@ public class ClientMenu extends ClientManager {
     private void saveOrder(ArrayList<Long> clientProductIds) {
         if (!clientProductIds.isEmpty()) {
             orderService.orderProducts(clientId, clientProductIds);
+            System.out.println("Order is saved");
         } else {
             System.out.println("List of products is empty");
         }

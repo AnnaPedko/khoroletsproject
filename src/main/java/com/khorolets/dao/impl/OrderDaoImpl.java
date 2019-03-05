@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class OrderDaoImpl implements OrderDao {
     private static volatile OrderDao orderDao;
@@ -36,27 +35,42 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
-    public List<Order> getAllOrders() {
-        return new ArrayList<>(map.values());
+    public List<long[]> getAllOrders() {
+        return new ArrayList<long[]>();
     }
 
-    public Map<Long, Order> getOrdersByClientId(long clientId) {
-        Map<Long, Order> result = map.entrySet()
-                .stream()
-                .filter(x -> x.getValue().getClient().getId() == clientId)
-                .collect(Collectors.toMap(map -> map.getKey(), map -> map.getValue()));
-
-        return result;
+    @Override
+    public List<long[]> getOrdersByClientId(long clientId) {
+        return null;
     }
 
     @Override
     public void deleteOrdersByClientId(long clientId, long orderId) {
 
-        if (getOrdersByClientId(clientId).remove(orderId) != null) {
-            map.remove(orderId);
-            System.out.println(" Delete order with id = " + orderId);
-        } else {
-            System.out.println(" There is no order with id = " + orderId);
-        }
     }
+
+//    @Override
+//    public List<long[]> getOrdersByClientId(long clientId) {
+//        return null;
+//    }
+
+//    public Map<Long, Order> getOrdersByClientId(long clientId) {
+//        Map<Long, Order> result = map.entrySet()
+//                .stream()
+//                .filter(x -> x.getValue().getClient().getId() == clientId)
+//                .collect(Collectors.toMap(map -> map.getKey(), map -> map.getValue()));
+//
+//        return result;
+//    }
+
+//    @Override
+//    public void deleteOrdersByClientId(long clientId, long orderId) {
+//
+//        if (getOrdersByClientId(clientId).remove(orderId) != null) {
+//            map.remove(orderId);
+//            System.out.println(" Delete order with id = " + orderId);
+//        } else {
+//            System.out.println(" There is no order with id = " + orderId);
+//        }
+//    }
 }

@@ -12,6 +12,12 @@ public class Order {
         this.products = products;
     }
 
+    public Order(long id, Client client, List<Product> products) {
+        this.id = id;
+        this.client = client;
+        this.products = products;
+    }
+
     public long getId() {
         return id;
     }
@@ -41,7 +47,7 @@ public class Order {
         return "Order{" +
                 "\nid= " + id + "," +
                 "\nclient=" + client + "," +
-                "\nproducts=" + products + "," +
+                "\nproducts=" + products +
                 '}';
     }
 }

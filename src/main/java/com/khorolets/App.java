@@ -5,7 +5,6 @@ import com.khorolets.dao.OrderDao;
 import com.khorolets.dao.ProductDao;
 import com.khorolets.dao.impl.ClientDBDao;
 import com.khorolets.dao.impl.OrderDBDao;
-import com.khorolets.dao.impl.OrderDaoImpl;
 import com.khorolets.dao.impl.ProductDBDao;
 import com.khorolets.services.ClientService;
 import com.khorolets.services.OrderService;
@@ -25,16 +24,12 @@ import java.io.InputStreamReader;
 
 public class App {
     public static void main(String[] args) throws IOException {
-        ClientDao clientDao = new ClientDBDao();
-        ProductDao productDao = new ProductDBDao();
-        OrderDao orderDao = new OrderDBDao();
+        ClientDao clientDao = ClientDBDao.getInstance();
+        ProductDao productDao = ProductDBDao.getInstance();
+        OrderDao orderDao = OrderDBDao.getInstance();
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         ValidationService validationService = new ValidationServiceImpl();
-
-        //ClientDao clientDao = ClientDaoImpl.getInstance();
-        //ProductDao productDao = ProductDaoImpl.getInstance();
-        //OrderDao orderDao = OrderDaoImpl.getInstance();
 
         ClientService clientService = new ClientServiceImpl(clientDao, validationService);
         ProductService productService = new ProductServiceImpl(productDao, validationService);
