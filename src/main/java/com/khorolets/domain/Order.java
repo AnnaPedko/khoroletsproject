@@ -1,6 +1,7 @@
 package com.khorolets.domain;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Order {
     List<Product> products;
@@ -16,6 +17,22 @@ public class Order {
         this.id = id;
         this.client = client;
         this.products = products;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Order order = (Order) o;
+        return id == order.id &&
+                Objects.equals(products, order.products) &&
+                Objects.equals(client, order.client);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(products, id, client);
     }
 
     public long getId() {

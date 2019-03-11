@@ -1,5 +1,7 @@
 package com.khorolets.domain;
 
+import java.util.Objects;
+
 public class Client {
     private long id;
     private String name;
@@ -26,10 +28,30 @@ public class Client {
         this.surname = surname;
         this.age = age;
         this.phone = phone;
+
         this.email = email;
     }
 
     public Client() {
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Client client = (Client) o;
+        return id == client.id &&
+                age == client.age &&
+                Objects.equals(name, client.name) &&
+                Objects.equals(surname, client.surname) &&
+                Objects.equals(email, client.email) &&
+                Objects.equals(phone, client.phone);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id, name, surname, age, email, phone);
     }
 
     public long getId() {

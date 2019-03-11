@@ -40,12 +40,11 @@ public class ProductDaoImpl implements ProductDao {
     public void editProduct(long id, String newName, BigDecimal newPrice) {
 
         if (map.keySet().contains(id)) {
-                map.get(id).setName(newName);
-                map.get(id).setPrice(newPrice);
-                System.out.println("Product modified with id = " + id);
-            }
-         else
-             System.out.println("Product with id = " + id + "does not exist");
+            map.get(id).setName(newName);
+            map.get(id).setPrice(newPrice);
+            System.out.println("Product modified with id = " + id);
+        } else
+            System.out.println("Product with id = " + id + "does not exist");
     }
 
     @Override

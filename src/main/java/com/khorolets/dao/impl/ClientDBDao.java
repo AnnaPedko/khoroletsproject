@@ -140,7 +140,7 @@ public class ClientDBDao implements ClientDao {
              Statement st = connection.createStatement();
              ResultSet resultSet = st.executeQuery("SELECT * FROM CLIENT WHERE PHONE = '" + phone + "';")) {
 
-             exist = resultSet.next();
+            exist = resultSet.next();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -155,7 +155,7 @@ public class ClientDBDao implements ClientDao {
              Statement st = connection.createStatement();
              ResultSet resultSet = st.executeQuery("SELECT * FROM CLIENT WHERE ID = " + clientId + ";")) {
 
-             while (resultSet.next()) {
+            while (resultSet.next()) {
                 long id = resultSet.getLong("ID");
                 String name = resultSet.getString("NAME");
                 String surname = resultSet.getString("SURNAME");
