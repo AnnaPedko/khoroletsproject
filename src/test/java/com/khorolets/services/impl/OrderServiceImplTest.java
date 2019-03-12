@@ -115,9 +115,11 @@ public class OrderServiceImplTest {
 
     @Test
     public void deleteOrdersByClientId() {
+        long clientId = 1;
+        long id = 1;
+
+        orderService.deleteOrdersByClientId(clientId, id);
+        Mockito.verify(orderDao, Mockito.times(1)).deleteOrdersByClientId(clientId, id);
     }
 
-    @Test
-    public void getOrders() {
-    }
 }

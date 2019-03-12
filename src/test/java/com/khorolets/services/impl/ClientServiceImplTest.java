@@ -95,6 +95,25 @@ public class ClientServiceImplTest {
     }
 
     @Test
+    public void verifyClientByPhoneNegative() {
+        //GIVEN
+        long id = -1;
+        String name = "TestName";
+        String surname = "TestSurname";
+        int age = 10;
+        String email = "test@test.com";
+        String phone = "+380501111111";
+
+        //WHEN
+        Mockito.when(clientDao.hasPhone(phone)).thenReturn(false);
+
+        //THEN
+        long res = clientService.verifyClientByPhone(new Client(name, surname, age, phone, email));
+
+        Assert.assertEquals(id, res);
+    }
+
+    @Test
     public void getAllClients() {
         clientService.getAllClients();
         Mockito.verify(clientDao, Mockito.times(1)).getAllClients();
