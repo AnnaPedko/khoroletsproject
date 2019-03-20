@@ -31,19 +31,17 @@ public class WebApp implements ServletContextListener {
 
         ValidationService validationService = new ValidationServiceImpl();
 
-        ClientService clientService = new ClientServiceImpl(clientDao, validationService );
-        ProductService productService = new ProductServiceImpl(productDao,validationService);
-        OrderService orderService= new OrderServiceImpl(orderDao,validationService,productService,clientService);
+        ClientService clientService = new ClientServiceImpl(clientDao, validationService);
+        ProductService productService = new ProductServiceImpl(productDao, validationService);
+        OrderService orderService = new OrderServiceImpl(orderDao, validationService, productService, clientService);
 
         ServletContext servletContext = sce.getServletContext();
         servletContext.addServlet("ClientServlet", new ClientServlet(clientService)).addMapping("/clients/*");
         servletContext.addServlet("ProductServlet", new ProductServlet(productService)).addMapping("/products/*");
         servletContext.addServlet("OrderServlet", new OrderServlet(orderService)).addMapping("/orders/*");
-
     }
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
-
     }
 }

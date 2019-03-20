@@ -18,22 +18,19 @@ public class ClientServlet extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
         String pathInfo = req.getPathInfo();
-        if("/delete".equals(pathInfo))
-        {
-            doDelete(req,resp);
+        if ("/delete".equals(pathInfo)) {
+            doDelete(req, resp);
             return;
-        }
-        else if ("/put".equals(pathInfo))
-        {
+        } else if ("/put".equals(pathInfo)) {
             doPut(req, resp);
         }
         resp.setContentType("text/html");
         PrintWriter writer = resp.getWriter();
 
-        for (Client client:clientService.getAllClients()) {
+        for (Client client : clientService.getAllClients()) {
             writer.println("<h1>" + client + "</h1>");
             writer.println("<br>");
         }
@@ -43,9 +40,9 @@ public class ClientServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String queryType = req.getParameter("queryType");
 
-        if(queryType.equals("edit"))
+        if (queryType.equals("edit"))
             editClient(req);
-        else if(queryType.equals("create"))
+        else if (queryType.equals("create"))
             createClient(req);
         else {
             resp.setContentType("text/html");
@@ -56,8 +53,7 @@ public class ClientServlet extends HttpServlet {
         doGet(req, resp);
     }
 
-    private void createClient(HttpServletRequest req)
-    {
+    private void createClient(HttpServletRequest req) {
         String name = req.getParameter("name");
         String surname = req.getParameter("surname");
         String phone = req.getParameter("phone");
@@ -67,8 +63,7 @@ public class ClientServlet extends HttpServlet {
         clientService.createClient(name, surname, Integer.parseInt(age), phone, email);
     }
 
-    private void editClient(HttpServletRequest req)
-    {
+    private void editClient(HttpServletRequest req) {
         String id = req.getParameter("id");
         String name = req.getParameter("name");
         String age = req.getParameter("age");
@@ -78,15 +73,13 @@ public class ClientServlet extends HttpServlet {
     }
 
     @Override
-    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String id =req.getParameter("id");
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) {
+        String id = req.getParameter("id");
         clientService.deleteClient(Long.parseLong(id));
-
-        //doGet(req, resp);
     }
 
     @Override
-    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) {
         editClient(req);
     }
 }
