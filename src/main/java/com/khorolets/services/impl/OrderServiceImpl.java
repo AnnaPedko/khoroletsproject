@@ -31,8 +31,10 @@ public class OrderServiceImpl implements OrderService {
             if (productService.getProductById(id) != null) {
                 products.add(productService.getProductById(id));
             }
+
         }
-        if (products != null) {
+        long getClientId = clientService.getClientById(clientId).getId();
+        if (products != null && clientId == getClientId) {
             orderDao.orderProducts(new Order(clientService.getClientById(clientId), products));
         }
     }
