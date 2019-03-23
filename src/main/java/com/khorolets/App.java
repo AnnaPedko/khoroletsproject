@@ -17,6 +17,7 @@ import com.khorolets.validators.impl.ValidationServiceImpl;
 import com.khorolets.view.AdminMenu;
 import com.khorolets.view.ClientMenu;
 import com.khorolets.view.MainMenu;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -24,7 +25,7 @@ import java.io.InputStreamReader;
 
 public class App {
     public static void main(String[] args) throws IOException {
-        ClientDao clientDao = ClientDBDao.getInstance();
+        /*ClientDao clientDao = ClientDBDao.getInstance();
         ProductDao productDao = ProductDBDao.getInstance();
         OrderDao orderDao = OrderDBDao.getInstance();
 
@@ -39,6 +40,10 @@ public class App {
         ClientMenu clientMenu = new ClientMenu(br, clientService, productService, orderService);
         MainMenu menu = new MainMenu(br, adminMenu, clientMenu);
 
+        menu.showMenu();*/
+
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("app.xml");
+        MainMenu menu = (MainMenu)context.getBean("mainMenu");
         menu.showMenu();
     }
 }
