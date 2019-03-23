@@ -2,7 +2,6 @@ package com.khorolets.dao.impl;
 
 import com.khorolets.dao.ClientDao;
 import com.khorolets.domain.Client;
-import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.HashMap;

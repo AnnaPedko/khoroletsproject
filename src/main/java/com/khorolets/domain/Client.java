@@ -3,6 +3,7 @@ package com.khorolets.domain;
 import org.springframework.stereotype.Component;
 
 import java.util.Objects;
+
 @Component
 public class Client {
     private long id;

@@ -2,12 +2,12 @@ package com.khorolets.dao.impl;
 
 import com.khorolets.dao.OrderDao;
 import com.khorolets.domain.Order;
-import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 public class OrderDaoImpl implements OrderDao {
     private static volatile OrderDao orderDao;
     private static long generator = 0;

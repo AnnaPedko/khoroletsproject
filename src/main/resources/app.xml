@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util" xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="
         http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
@@ -9,14 +9,35 @@
 
 
     <!-- bean definitions here -->
-    <util:constant id = "in" static-field="java.lang.System.in"/>
+    <util:constant id="in" static-field="java.lang.System.in"/>
 
-    <bean id="reader" class ="java.io.InputStreamReader">
-        <constructor-arg name ="in" ref="in"/>
+    <bean id="reader" class="java.io.InputStreamReader">
+        <constructor-arg name="in" ref="in"/>
     </bean>
 
-    <bean class ="java.io.BufferedReader">
-        <constructor-arg name ="in" ref="reader"/>
+    <bean class="java.io.BufferedReader">
+        <constructor-arg name="in" ref="reader"/>
     </bean>
 
+    <bean id="clientService" class="com.khorolets.services.impl.ClientServiceImpl" autowire="constructor">
+        <!-- <constructor-arg name ="clientDao" ref="clientDao"/>-->
+        <!-- <constructor-arg name ="validationService" ref="validationService"/>-->
+    </bean>
+    <bean id="productService" class="com.khorolets.services.impl.ProductServiceImpl" autowire="constructor">
+        <!-- <constructor-arg name ="clientDao" ref="clientDao"/>-->
+        <!-- <constructor-arg name ="validationService" ref="validationService"/>-->
+    </bean>
+    <bean id="orderService" class="com.khorolets.services.impl.OrderServiceImpl" autowire="constructor">
+        <!-- <constructor-arg name ="clientDao" ref="clientDao"/>-->
+        <!-- <constructor-arg name ="validationService" ref="validationService"/>-->
+    </bean>
+
+    <bean id="adminMenu" class="com.khorolets.view.AdminMenu" autowire="constructor">
+        <!--<constructor-arg name ="clientService" ref="clientService"/>-->
+        <!--<constructor-arg name ="br" ref="bufferedReader"/>-->
+    </bean>
+    <bean id="clientMenu" class="com.khorolets.view.ClientMenu" autowire="constructor">
+
+    </bean>
+    <bean id="mainMenu" class="com.khorolets.view.MainMenu"></bean>
 </beans>

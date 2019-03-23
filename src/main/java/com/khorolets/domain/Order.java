@@ -4,11 +4,16 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Objects;
+
 @Component
 public class Order {
     List<Product> products;
     private long id;
     private Client client;
+
+    public Order() {
+
+    }
 
     public Order(Client client, List<Product> products) {
         this.client = client;

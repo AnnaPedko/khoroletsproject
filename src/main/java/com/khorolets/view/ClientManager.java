@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+
 @Component
 public class ClientManager {
     @Autowired

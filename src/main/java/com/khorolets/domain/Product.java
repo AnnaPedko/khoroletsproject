@@ -4,6 +4,7 @@ import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.util.Objects;
+
 @Component
 public class Product {
     private long id;

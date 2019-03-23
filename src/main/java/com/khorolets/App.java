@@ -1,28 +1,9 @@
 package com.khorolets;
 
-import com.khorolets.dao.ClientDao;
-import com.khorolets.dao.OrderDao;
-import com.khorolets.dao.ProductDao;
-import com.khorolets.dao.impl.ClientDBDao;
-import com.khorolets.dao.impl.OrderDBDao;
-import com.khorolets.dao.impl.ProductDBDao;
-import com.khorolets.services.ClientService;
-import com.khorolets.services.OrderService;
-import com.khorolets.services.ProductService;
-import com.khorolets.services.impl.ClientServiceImpl;
-import com.khorolets.services.impl.OrderServiceImpl;
-import com.khorolets.services.impl.ProductServiceImpl;
-import com.khorolets.validators.ValidationService;
-import com.khorolets.validators.impl.ValidationServiceImpl;
-import com.khorolets.view.AdminMenu;
-import com.khorolets.view.ClientMenu;
 import com.khorolets.view.MainMenu;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 public class App {
     public static void main(String[] args) throws IOException {
@@ -44,7 +25,7 @@ public class App {
         menu.showMenu();*/
 
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext("com.khorolets/view", "com.khorolets/services", "com.khorolets/dao", "com.khorolets/validators");
-        MainMenu menu = context.getBean(MainMenu.class );
+        MainMenu menu = context.getBean(MainMenu.class);
         menu.showMenu();
     }
 }

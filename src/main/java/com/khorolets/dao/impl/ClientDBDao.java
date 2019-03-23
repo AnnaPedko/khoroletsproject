@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+
 @Component
 public class ClientDBDao implements ClientDao {
     public static final String DB_URL = "jdbc:h2:tcp://localhost/~/khorolets.project";

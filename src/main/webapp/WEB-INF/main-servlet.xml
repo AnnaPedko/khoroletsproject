@@ -1,23 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="
         http://www.springframework.org/schema/beans
-        http://www.springframework.org/schema/beans/spring-beans.xsd">
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
 
     <context:component-scan base-package="com.khorolets.controllers"/>
 
     <!-- bean definitions here -->
-    <bean id ="clientDao" class="com.khorolets.dao.impl.ClientDBDao"/>
-    <bean id ="productDao" class="com.khorolets.dao.impl.ProductDBDao"/>
-    <bean id ="orderDao" class="com.khorolets.dao.impl.OrderDBDao"/>
+    <bean id="clientDao" class="com.khorolets.dao.impl.ClientDBDao"/>
+    <bean id="productDao" class="com.khorolets.dao.impl.ProductDBDao"/>
+    <bean id="orderDao" class="com.khorolets.dao.impl.OrderDBDao"/>
 
     <bean id="validationService" class="com.khorolets.validators.impl.ValidationServiceImpl"/>
 
     <bean id="clientService" class="com.khorolets.services.impl.ClientServiceImpl" autowire="constructor">
-   <!-- <constructor-arg name ="clientDao" ref="clientDao"/>-->
-   <!-- <constructor-arg name ="validationService" ref="validationService"/>-->
+        <!-- <constructor-arg name ="clientDao" ref="clientDao"/>-->
+        <!-- <constructor-arg name ="validationService" ref="validationService"/>-->
     </bean>
     <bean id="productService" class="com.khorolets.services.impl.ProductServiceImpl" autowire="constructor">
         <!-- <constructor-arg name ="clientDao" ref="clientDao"/>-->
@@ -28,7 +30,7 @@
         <!-- <constructor-arg name ="validationService" ref="validationService"/>-->
     </bean>
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name ="prefix" value="/WEB-INF/jsp/"/>
-        <property name ="suffix" value=".jsp"/>
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="suffix" value=".jsp"/>
     </bean>
 </beans>

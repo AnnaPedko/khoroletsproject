@@ -11,7 +11,7 @@ import java.io.IOException;
 @ImportResource(value = "classpath:app.xml")
 public class MainMenu {
     @Autowired
-    private final BufferedReader br ;
+    private final BufferedReader br;
     @Autowired
     private final AdminMenu adminMenu;
     @Autowired
