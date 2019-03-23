@@ -5,9 +5,10 @@ import com.khorolets.domain.Client;
 import com.khorolets.exception.BusinessException;
 import com.khorolets.services.ClientService;
 import com.khorolets.validators.ValidationService;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
-
+@Component
 public class ClientServiceImpl implements ClientService {
 
     private ClientDao clientDao;

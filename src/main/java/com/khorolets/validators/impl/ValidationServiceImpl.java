@@ -2,7 +2,9 @@ package com.khorolets.validators.impl;
 
 import com.khorolets.exception.BusinessException;
 import com.khorolets.validators.ValidationService;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ValidationServiceImpl implements ValidationService {
     @Override
     public void validateAge(int age) throws BusinessException {

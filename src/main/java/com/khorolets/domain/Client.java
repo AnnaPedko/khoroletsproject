@@ -1,7 +1,9 @@
 package com.khorolets.domain;
 
-import java.util.Objects;
+import org.springframework.stereotype.Component;
 
+import java.util.Objects;
+@Component
 public class Client {
     private long id;
     private String name;

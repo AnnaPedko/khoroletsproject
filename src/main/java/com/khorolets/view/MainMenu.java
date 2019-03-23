@@ -1,11 +1,20 @@
 package com.khorolets.view;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ImportResource;
+import org.springframework.stereotype.Component;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 
+@Component
+@ImportResource(value = "classpath:app.xml")
 public class MainMenu {
-    private final BufferedReader br;
+    @Autowired
+    private final BufferedReader br ;
+    @Autowired
     private final AdminMenu adminMenu;
+    @Autowired
     private final ClientMenu clientMenu;
 
     public MainMenu(BufferedReader br, AdminMenu adminMenu, ClientMenu clientMenu) {

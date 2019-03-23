@@ -2,13 +2,13 @@ package com.khorolets.dao.impl;
 
 import com.khorolets.dao.ProductDao;
 import com.khorolets.domain.Product;
+import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 public class ProductDaoImpl implements ProductDao {
     private static volatile ProductDao productDao;
     private static long generator = 0;

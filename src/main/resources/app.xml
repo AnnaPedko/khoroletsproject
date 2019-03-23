@@ -10,12 +10,6 @@
 
     <!-- bean definitions here -->
     <util:constant id = "in" static-field="java.lang.System.in"/>
-    <bean id ="clientDao" class="com.khorolets.dao.impl.ClientDBDao"/>
-    <bean id ="productDao" class="com.khorolets.dao.impl.ProductDBDao"/>
-    <bean id ="orderDao" class="com.khorolets.dao.impl.OrderDBDao"/>
-
-
-    <bean id="validationService" class="com.khorolets.validators.impl.ValidationServiceImpl"/>
 
     <bean id="reader" class ="java.io.InputStreamReader">
         <constructor-arg name ="in" ref="in"/>
@@ -25,25 +19,4 @@
         <constructor-arg name ="in" ref="reader"/>
     </bean>
 
-    <bean id="clientService" class="com.khorolets.services.impl.ClientServiceImpl" autowire="constructor">
-   <!-- <constructor-arg name ="clientDao" ref="clientDao"/>-->
-   <!-- <constructor-arg name ="validationService" ref="validationService"/>-->
-    </bean>
-    <bean id="productService" class="com.khorolets.services.impl.ProductServiceImpl" autowire="constructor">
-        <!-- <constructor-arg name ="clientDao" ref="clientDao"/>-->
-        <!-- <constructor-arg name ="validationService" ref="validationService"/>-->
-    </bean>
-    <bean id="orderService" class="com.khorolets.services.impl.OrderServiceImpl" autowire="constructor">
-        <!-- <constructor-arg name ="clientDao" ref="clientDao"/>-->
-        <!-- <constructor-arg name ="validationService" ref="validationService"/>-->
-    </bean>
-
-    <bean id="adminMenu" class="com.khorolets.view.AdminMenu" autowire="constructor">
-        <!--<constructor-arg name ="clientService" ref="clientService"/>-->
-        <!--<constructor-arg name ="br" ref="bufferedReader"/>-->
-    </bean>
-    <bean id="clientMenu" class="com.khorolets.view.ClientMenu" autowire="constructor">
-
-    </bean>
-    <bean id="mainMenu" class="com.khorolets.view.MainMenu" autowire="constructor"></bean>
 </beans>

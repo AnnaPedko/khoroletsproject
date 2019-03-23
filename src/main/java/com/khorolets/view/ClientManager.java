@@ -2,12 +2,16 @@ package com.khorolets.view;
 
 import com.khorolets.domain.Client;
 import com.khorolets.services.ClientService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-
+@Component
 public class ClientManager {
+    @Autowired
     private ClientService clientService;
+    @Autowired
     private BufferedReader br;
 
 

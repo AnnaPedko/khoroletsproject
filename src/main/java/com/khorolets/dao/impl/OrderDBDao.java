@@ -2,11 +2,12 @@ package com.khorolets.dao.impl;
 
 import com.khorolets.dao.OrderDao;
 import com.khorolets.domain.Order;
+import org.springframework.stereotype.Component;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
+@Component
 public class OrderDBDao implements OrderDao {
     public static final String DB_URL = "jdbc:h2:tcp://localhost/~/khorolets.project";
     private static final String USER = "Test";

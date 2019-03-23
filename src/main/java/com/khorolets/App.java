@@ -17,6 +17,7 @@ import com.khorolets.validators.impl.ValidationServiceImpl;
 import com.khorolets.view.AdminMenu;
 import com.khorolets.view.ClientMenu;
 import com.khorolets.view.MainMenu;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.io.BufferedReader;
@@ -42,8 +43,8 @@ public class App {
 
         menu.showMenu();*/
 
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("app.xml");
-        MainMenu menu = (MainMenu)context.getBean("mainMenu");
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext("com.khorolets/view", "com.khorolets/services", "com.khorolets/dao", "com.khorolets/validators");
+        MainMenu menu = context.getBean(MainMenu.class );
         menu.showMenu();
     }
 }

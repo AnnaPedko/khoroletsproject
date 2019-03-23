@@ -3,15 +3,20 @@ package com.khorolets.view;
 import com.khorolets.services.ClientService;
 import com.khorolets.services.OrderService;
 import com.khorolets.services.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.math.BigDecimal;
 
+@Component
 public class AdminMenu extends ClientManager {
-
+    @Autowired
     private final BufferedReader br;
+    @Autowired
     private final ProductService productService;
+    @Autowired
     private final OrderService orderService;
 
     public AdminMenu(BufferedReader br, ClientService clientService, ProductService productService, OrderService orderService) {

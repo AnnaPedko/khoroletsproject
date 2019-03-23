@@ -7,10 +7,11 @@ import com.khorolets.services.ClientService;
 import com.khorolets.services.OrderService;
 import com.khorolets.services.ProductService;
 import com.khorolets.validators.ValidationService;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Component
 public class OrderServiceImpl implements OrderService {
     private OrderDao orderDao;
     private ValidationService validationService;
