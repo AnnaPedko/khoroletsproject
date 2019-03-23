@@ -19,25 +19,4 @@
         <constructor-arg name="in" ref="reader"/>
     </bean>
 
-    <bean id="clientService" class="com.khorolets.services.impl.ClientServiceImpl" autowire="constructor">
-        <!-- <constructor-arg name ="clientDao" ref="clientDao"/>-->
-        <!-- <constructor-arg name ="validationService" ref="validationService"/>-->
-    </bean>
-    <bean id="productService" class="com.khorolets.services.impl.ProductServiceImpl" autowire="constructor">
-        <!-- <constructor-arg name ="clientDao" ref="clientDao"/>-->
-        <!-- <constructor-arg name ="validationService" ref="validationService"/>-->
-    </bean>
-    <bean id="orderService" class="com.khorolets.services.impl.OrderServiceImpl" autowire="constructor">
-        <!-- <constructor-arg name ="clientDao" ref="clientDao"/>-->
-        <!-- <constructor-arg name ="validationService" ref="validationService"/>-->
-    </bean>
-
-    <bean id="adminMenu" class="com.khorolets.view.AdminMenu" autowire="constructor">
-        <!--<constructor-arg name ="clientService" ref="clientService"/>-->
-        <!--<constructor-arg name ="br" ref="bufferedReader"/>-->
-    </bean>
-    <bean id="clientMenu" class="com.khorolets.view.ClientMenu" autowire="constructor">
-
-    </bean>
-    <bean id="mainMenu" class="com.khorolets.view.MainMenu"></bean>
 </beans>
