@@ -15,15 +15,18 @@ public class ValidationServiceImpl implements ValidationService {
 
     @Override
     public void validatePhone(String phone) throws BusinessException {
-        if (phone.length() != 13 || !isNumber(phone.substring(1, 13)) || !validateCode(phone.substring(0, 6)))
-            throw new BusinessException("Incorrect phone. Please enter phone in this format:+380XXXXXXXXXX");
+        if (phone != null) {
+            if (phone.length() != 13 || !isNumber(phone.substring(1, 13)) || !validateCode(phone.substring(0, 6)))
+                throw new BusinessException("Incorrect phone. Please enter phone in this format:+380XXXXXXXXXX");
+        }
     }
 
     @Override
     public void validateEmail(String email) throws BusinessException {
-
-        if (email.length() > 254 || !isEmail(email))
-            throw new BusinessException("Incorrect email. Please enter email in this format: simple@example.com ");
+        if (email != null) {
+            if (email.length() > 254 || !isEmail(email))
+                throw new BusinessException("Incorrect email. Please enter email in this format: simple@example.com ");
+        }
     }
 
     public boolean isNumber(String string) {
