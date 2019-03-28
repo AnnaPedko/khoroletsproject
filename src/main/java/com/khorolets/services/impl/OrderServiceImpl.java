@@ -7,18 +7,20 @@ import com.khorolets.services.ClientService;
 import com.khorolets.services.OrderService;
 import com.khorolets.services.ProductService;
 import com.khorolets.validators.ValidationService;
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+@Service
 public class OrderServiceImpl implements OrderService {
     private OrderDao orderDao;
     private ValidationService validationService;
     private ProductService productService;
     private ClientService clientService;
 
+    @Autowired
     public OrderServiceImpl(OrderDao orderDao, ValidationService validationService, ProductService productService, ClientService clientService) {
         this.orderDao = orderDao;
         this.validationService = validationService;
@@ -43,45 +45,43 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<Order> getAllOrders() {
-        List<Order> orders;
-        orders = getOrders(orderDao.getAllOrders());
 
-        return orders;
+
+        return orderDao.getAllOrdersList();
     }
 
     public List<Order> getOrdersByClientId(long clientId) {
         List<Order> orders;
-        orders = getOrders(orderDao.getOrdersByClientId(clientId));
+        orders = orderDao.getOrdersByClientIdList(clientId);
 
         return orders;
     }
-
 
     public void deleteOrdersByClientId(long clientId, long orderId) {
         orderDao.deleteOrdersByClientId(clientId, orderId);
     }
 
     public List<Order> getOrders(List<long[]> ordersTable) {
-        List<Order> orders = new ArrayList<>();
-        List<Product> products = new ArrayList<>();
+//        List<Order> orders = new ArrayList<>();
+//        List<Product> products = new ArrayList<>();
+//
+//        long previousOrderId = -1;
+//
+//        for (int i = 0; i < ordersTable.size(); ++i) {
+//            long orderId = ordersTable.get(i)[0];
+//            long clientId = ordersTable.get(i)[1];
+//            long productId = ordersTable.get(i)[2];
+//
+//            if (orderId == previousOrderId)
+//                products.add(productService.getProductById(productId));
+//            else {
+//                products = new ArrayList<>();
+//                products.add(productService.getProductById(productId));
+//                previousOrderId = orderId;
+//                orders.add(new Order(orderId, clientService.getClientById(clientId), products));
+//            }
 
-        long previousOrderId = -1;
-
-        for (int i = 0; i < ordersTable.size(); ++i) {
-            long orderId = ordersTable.get(i)[0];
-            long clientId = ordersTable.get(i)[1];
-            long productId = ordersTable.get(i)[2];
-
-            if (orderId == previousOrderId)
-                products.add(productService.getProductById(productId));
-            else {
-                products = new ArrayList<>();
-                products.add(productService.getProductById(productId));
-                previousOrderId = orderId;
-                orders.add(new Order(orderId, clientService.getClientById(clientId), products));
-            }
-
-        }
-        return orders;
+        //}
+        return null;
     }
 }

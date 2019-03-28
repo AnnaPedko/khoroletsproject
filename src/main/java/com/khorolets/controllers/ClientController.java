@@ -20,11 +20,11 @@ public class ClientController {
     }
 
     @PostMapping()
-    public void showClients(@RequestParam String name,
-                            @RequestParam String surname,
-                            @RequestParam String age,
-                            @RequestParam String phone,
-                            @RequestParam String email) {
+    public void addClients(@RequestParam String name,
+                           @RequestParam String surname,
+                           @RequestParam String age,
+                           @RequestParam String phone,
+                           @RequestParam String email) {
         clientService.createClient(name, surname, Integer.parseInt(age), phone, email);
     }
 

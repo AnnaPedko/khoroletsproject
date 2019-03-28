@@ -1,24 +1,38 @@
 package com.khorolets.domain;
 
-import org.springframework.stereotype.Component;
+import org.hibernate.annotations.GenericGenerator;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-@Component
+@Entity
+@Table(name = "PRODUCT")
 public class Product {
+    @Id
+    @GeneratedValue(generator = "increment")
+    @GenericGenerator(name = "increment", strategy = "increment")
+
+    @Column(name = "ID")
     private long id;
+
+    @Column(name = "NAME")
     private String name;
+
+    @Column(name = "PRICE")
     private BigDecimal price;
 
     public Product() {
     }
 
+    @Autowired
     public Product(String name, BigDecimal price) {
         this.name = name;
         this.price = price;
     }
 
+    @Autowired
     public Product(long id, String name, BigDecimal price) {
         this.id = id;
         this.name = name;

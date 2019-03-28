@@ -35,12 +35,21 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
+    public List<Order> getAllOrdersList() {
+        return null;
+    }
+
     public List<long[]> getAllOrders() {
         return new ArrayList<long[]>();
     }
 
     @Override
     public List<long[]> getOrdersByClientId(long clientId) {
+        return null;
+    }
+
+    @Override
+    public List<Order> getOrdersByClientIdList(long clientId) {
         return null;
     }
 

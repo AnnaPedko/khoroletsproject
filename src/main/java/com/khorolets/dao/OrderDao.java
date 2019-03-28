@@ -18,6 +18,8 @@ public interface OrderDao {
      *
      * @return list of arrays [orderId, clientId, productId];
      **/
+    List<Order> getAllOrdersList();
+
     List<long[]> getAllOrders();
 
     /**
@@ -27,6 +29,9 @@ public interface OrderDao {
      * @return list of arrays [orderId, clientId, productId]
      **/
     List<long[]> getOrdersByClientId(long clientId);
+
+    List<Order> getOrdersByClientIdList(long clientId);
+
 
     /**
      * Delete order for certain client id

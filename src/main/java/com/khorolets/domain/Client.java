@@ -1,17 +1,30 @@
 package com.khorolets.domain;
 
-import org.springframework.stereotype.Component;
+import org.hibernate.annotations.GenericGenerator;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.persistence.*;
 import java.util.Objects;
 
-@Component
+@Entity
+@Table(name = "CLIENT")
 public class Client {
+    @Id
+    @GeneratedValue(generator = "increment")
+    @GenericGenerator(name = "increment", strategy = "increment")
+
+    @Column(name = "ID")
     private long id;
+
+    @Column(name = "NAME")
     private String name;
+
+    @Column(name = "SURNAME")
     private String surname;
     private int age;
     private String email;
     private String phone;
+
 
     public Client(String name, String surname, String phone) {
         this(name, surname, 0, phone, null);
@@ -25,6 +38,7 @@ public class Client {
         this.email = email;
     }
 
+    @Autowired
     public Client(long id, String name, String surname, int age, String phone, String email) {
         this.id = id;
         this.name = name;

@@ -2,13 +2,11 @@ package com.khorolets.dao.impl;
 
 import com.khorolets.dao.OrderDao;
 import com.khorolets.domain.Order;
-import org.springframework.stereotype.Component;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
 public class OrderDBDao implements OrderDao {
     public static final String DB_URL = "jdbc:h2:tcp://localhost/~/khorolets.project";
     private static final String USER = "Test";
@@ -72,6 +70,10 @@ public class OrderDBDao implements OrderDao {
     }
 
     @Override
+    public List<Order> getAllOrdersList() {
+        return null;
+    }
+
     public List<long[]> getAllOrders() {
         List<long[]> orders = new ArrayList<>();
         try (Connection connection = DriverManager.getConnection(DB_URL, USER, PASSWORD);
@@ -91,7 +93,6 @@ public class OrderDBDao implements OrderDao {
         return orders;
     }
 
-    @Override
     public List<long[]> getOrdersByClientId(long id) {
         List<long[]> orders = new ArrayList<>();
         try (Connection connection = DriverManager.getConnection(DB_URL, USER, PASSWORD);
@@ -112,6 +113,10 @@ public class OrderDBDao implements OrderDao {
     }
 
     @Override
+    public List<Order> getOrdersByClientIdList(long clientId) {
+        return null;
+    }
+
     public void deleteOrdersByClientId(long clientId, long orderId) {
         try (Connection connection = DriverManager.getConnection(DB_URL, USER, PASSWORD);
              PreparedStatement st = connection.prepareStatement("DELETE FROM ORDERS WHERE ID = ? AND CLIENT_ID = ?");

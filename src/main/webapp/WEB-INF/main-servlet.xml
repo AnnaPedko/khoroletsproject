@@ -9,11 +9,10 @@
         http://www.springframework.org/schema/context/spring-context.xsd">
 
     <context:component-scan base-package="com.khorolets.controllers"/>
-
     <!-- bean definitions here -->
-    <bean id="clientDao" class="com.khorolets.dao.impl.ClientDBDao"/>
-    <bean id="productDao" class="com.khorolets.dao.impl.ProductDBDao"/>
-    <bean id="orderDao" class="com.khorolets.dao.impl.OrderDBDao"/>
+    <bean id="clientDao" class="com.khorolets.dao.impl.ClientEMDao"/>
+    <bean id="productDao" class="com.khorolets.dao.impl.ProductEMDao"/>
+    <bean id="orderDao" class="com.khorolets.dao.impl.OrderEMDao"/>
 
     <bean id="validationService" class="com.khorolets.validators.impl.ValidationServiceImpl"/>
 
@@ -29,6 +28,7 @@
         <!-- <constructor-arg name ="clientDao" ref="clientDao"/>-->
         <!-- <constructor-arg name ="validationService" ref="validationService"/>-->
     </bean>
+
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/jsp/"/>
         <property name="suffix" value=".jsp"/>

@@ -1,14 +1,34 @@
 package com.khorolets.domain;
 
-import org.springframework.stereotype.Component;
+import org.hibernate.annotations.GenericGenerator;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
 
-@Component
+@Entity
+@Table(name = "ORDERS")
 public class Order {
+    @ManyToMany
+    @JoinTable(
+            name = "ORDER_ITEM",
+            joinColumns = @JoinColumn(
+                    name = "ORDER_ID",
+                    referencedColumnName = "ID"
+            ),
+            inverseJoinColumns = @JoinColumn(
+                    name = "PRODUCT_ID",
+                    referencedColumnName = "ID"
+            )
+    )
     List<Product> products;
+    @Id
+    @GeneratedValue(generator = "increment")
+    @GenericGenerator(name = "increment", strategy = "increment")
     private long id;
+    @OneToOne
+    @JoinColumn(name = "CLIENT_ID", referencedColumnName = "ID")
     private Client client;
 
     public Order() {
@@ -20,6 +40,7 @@ public class Order {
         this.products = products;
     }
 
+    @Autowired
     public Order(long id, Client client, List<Product> products) {
         this.id = id;
         this.client = client;

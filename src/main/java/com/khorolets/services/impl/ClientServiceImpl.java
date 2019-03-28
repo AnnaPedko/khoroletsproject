@@ -5,16 +5,18 @@ import com.khorolets.domain.Client;
 import com.khorolets.exception.BusinessException;
 import com.khorolets.services.ClientService;
 import com.khorolets.validators.ValidationService;
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Component
+@Service
 public class ClientServiceImpl implements ClientService {
-
     private ClientDao clientDao;
+
     private ValidationService validationService;
 
+    @Autowired
     public ClientServiceImpl(ClientDao clientDao, ValidationService validationService) {
         this.clientDao = clientDao;
         this.validationService = validationService;
